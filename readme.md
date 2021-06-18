@@ -9,13 +9,13 @@ proc sample(arg1: int, arg2 = false): string {.aliases: [stick, `&**`].} =
 
 and turn it into this:
 ```nim
-proc sample(arg1: int, arg2 = false): string {.aliases: [stick, `&**`].} =
+proc sample(arg1: int, arg2 = false): string =
   $arg1 & $arg2
 
-template stick(arg1: int; arg2 = false): untyped =
+template stick(arg1: int, arg2 = false): untyped =
   sample(arg1, arg2)
 
-template `&**`(arg1: int; arg2 = false): untyped =
+template `&**`(arg1: int, arg2 = false): untyped =
   sample(arg1, arg2)
 ```
 
