@@ -1,27 +1,33 @@
 import unittest, macros
-import macros
-import aliases
+import defAliases
 
-macro print(s: typed): untyped {.aliases: [hey].} =
-  quote:
-    echo `s`
+suite "test":
+  test "macro alias":
+    macro sample(s: typed): untyped {.aliases: [hey].} =
+      quote:
+        $ `s`
 
-print "s"
-hey 2
+    check sample(2) == "2"
+    check hey(false) == "false"
 
+  # test "template alias": # isn't ready yet
+  #   template print(): untyped {.aliases: [ali].} =
+  #     echo "print"
 
-# proc testFunc(str= "hey", num = 2): int {.aliases: [ttn, `ttq`].} =
-#   num
-
-# echo testFunc("wow", 3)
-# echo ttn()
-# echo `ttq`("so far, so good")
-
-# macro print(s: typed): untyped {.aliases: [hey].} =
-#   quote:
-#     echo `s`
-
-# template print(): untyped {.aliases: [ali].} =
-#   echo "print"
+  #   ali()
   
-# ali()
+  test "proc alias":
+    proc sample(arg1: int, arg2 = false): string {.aliases: [stick, `&**`].} =
+      $arg1 & $arg2
+    
+    check sample(2, false) == "2false"
+    check (1 &** true) == "1true"
+    check (1.stick true) == "1true"
+
+  test "func alias":
+    func sample(arg1: int, arg2 = false): string {.aliases: [stick, `&**`].} =
+      $arg1 & $arg2
+
+    check sample(2, false) == "2false"
+    check (1 &** true) == "1true"
+    check (1.stick true) == "1true"

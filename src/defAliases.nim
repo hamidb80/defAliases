@@ -1,7 +1,4 @@
-import
-  macros,
-  sequtils, strformat
-
+import macros, sequtils, strformat
 import strutils # for debug
 
 macro aliases*(symbols: untyped, body: untyped): untyped =
@@ -32,28 +29,11 @@ macro aliases*(symbols: untyped, body: untyped): untyped =
 
       result.add als
 
-  elif true: #TODO: get definiation of var, proc, ...
-    discard
-
   else:
     error fmt"nnk '{body.kind}' can't be uses with aliases macro"
 
-  debugEcho "-----------RESULT---------\n", (result.mapIt it.repr).join '\n'.repeat 2
+  when false:
+    debugEcho "-----------RESULT---------\n"
+    debugEcho (result.mapIt it.repr).join '\n'.repeat 2
+
   return result
-
-
-# proc testFunc(str= "hey", num = 2): int {.aliases: [ttn, `ttq`].} =
-#   num
-
-# echo testFunc("wow", 3)
-# echo ttn()
-# echo `ttq`("so far, so good")
-
-# macro print(s: typed): untyped {.aliases: [hey].} =
-#   quote:
-#     echo `s`
-
-template print(): untyped {.aliases: [ali].} =
-  echo "print"
-  
-ali()
