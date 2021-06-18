@@ -1,4 +1,4 @@
-## Idea:
+## Here's the Idea
 
 we are gonna take this:
 
@@ -19,7 +19,7 @@ template `&**`(arg1: int, arg2 = false): untyped =
   sample(arg1, arg2)
 ```
 
-**then you can use it with either it's aliases or it's real name:**
+**then you can use it by either it's aliases or it's real name**
 ```nim
 1 &** true         # :: "1true"
 1.stick true       # :: "1true"
@@ -28,7 +28,7 @@ template `&**`(arg1: int, arg2 = false): untyped =
 
 isn't it interesting?
 
-## limitations:
+## limitations
 you can't use it with temaplate [because of this bug [link](https://github.com/nim-lang/Nim/issues/18212)] but `proc`s, `func`s, `macro`s are supported
 
 
