@@ -29,3 +29,7 @@ echo 1.stick true
 
 ## limitations:
 you can't use it with temaplate [because of this bug [link](https://github.com/nim-lang/Nim/issues/18212)] but `proc`s, `func`s, `macro`s are supported
+
+
+## TODO
+- publish it in nimble
