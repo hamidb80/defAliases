@@ -19,13 +19,14 @@ template `&**`(arg1: int, arg2 = false): untyped =
   sample(arg1, arg2)
 ```
 
-isn't it fun?
-
-**usage:**
+**then you can use it with either it's aliases or it's real name:**
 ```nim
-echo 1 &** true
-echo 1.stick true
+1 &** true         # :: "1true"
+1.stick true       # :: "1true"
+1.sample true      # :: "1true"
 ```
+
+isn't it interesting?
 
 ## limitations:
 you can't use it with temaplate [because of this bug [link](https://github.com/nim-lang/Nim/issues/18212)] but `proc`s, `func`s, `macro`s are supported
